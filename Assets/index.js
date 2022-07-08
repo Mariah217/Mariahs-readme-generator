@@ -1,8 +1,11 @@
 // TODO: Include packages needed for this application
-import inquirer from 'inquirer'
-import fs from 'fs'
+import inquirer from 'inquirer';
+import fs from 'fs';
 
 // TODO: Create an array of questions for user input
+const generateREADME = ({title, description, installation, usage, contributing, tests, license, github, email}) =>
+``
+
 const questions = [
     {
         type: 'input',
@@ -37,14 +40,9 @@ const questions = [
     {
         type: 'rawlist',
         message:'Select a license from the following:',
-        choices: '',
+        choices: ['MIT', 'Apache', 'GPL', 'Compliant', 'MIT + file License'],
         name: 'license',
     },
-    // {
-    //     type: 
-    //     message:
-    //     name: 'badges' 
-    // },
     {
         type: 'input',
         message: 'Enter your GitHub username.',
@@ -58,10 +56,15 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+const filename = response + "README.md"
+fs.writeFileSync("README.md", generateREADME(response))
 
 // TODO: Create a function to initialize app
-function init() {}
+inquirer
+.prompt(questions)
+.then(response =>{
+    console.log(response)
+})
 
 // Function call to initialize app
 init();
