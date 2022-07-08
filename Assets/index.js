@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
-import inquirer from 'inquirer';
-import fs from 'fs';
+const inquirer = require('inquirer');
+const fs = require('fs');
+const generatorMarkdown = require('./utils/generateMarkdown')
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -16,12 +17,12 @@ const questions = [
     },
     {
         type: 'input',
-        message: 'Please provide any istallation instructions.',
+        message: 'Please provide any installation instructions.',
         name: 'installation',
     },
     {
         type: 'input',
-        message: 'Please provide instructions and examples for use. Please also include a screenshot of your webpage.',
+        message: 'Please provide instructions and examples for use.',
         name: 'usage',
     },
     {
@@ -37,64 +38,36 @@ const questions = [
     {
         type: 'rawlist',
         message:'Select a license from the following:',
-        choices: ['MIT Licebse', 'Apache License', 'GPL License', 'Compliant License','N/A'],
+        choices: ['MIT License', 'Apache License', 'GPL License', 'Compliant License','N/A'],
         name: 'license',
     },
     {
         type: 'input',
-        message: 'GitHub username:',
+        message: 'GitHub Username:',
         name: 'github',
     },
     {
         type: 'input',
-        message: 'E-mail address:',
+        message: 'E-mail Address:',
         name: 'email',
     },
 ];
 
 // TODO: Create a function to write README file
-const filename = response + "README.md";
-fs.writeFileSync(filename, JSON.stringify(response,null))
-
-const generateREADME = `# ${title}
-#Description:
-${description}
-
-#Table of Contents: 
-*[Description](#description)
-*[Installation](#installation)
-*[Usage](#usage)
-*[Contributions](#contributions)
-*[Tests](#tests)
-*[License](#license)
-
-#Installation
-${installation}
-
-##Usage
-${usage}
-
-##Contribution
-${contributing}
-
-##Tests
-${tests}
-
-##License
-${license}
-
-#Please contact me if you have any questions!
-
-*GitHub: ${github}
-*E-mail: ${email}
-`
+function writeReadme(filename, data) {
+    fs.writeFileSync(filename, data)
+    console.log(filename);
+    console.log(data);
+}
 
 // TODO: Create a function to initialize app
-inquirer
-.prompt(questions)
-.then(response =>{
-    console.log(response)
-})
+function init() {
+    inquirer.prompt(questions)
+    .then(function(data) {
+        writeReadme("README.md", generatorMarkdown(data));
+        console.log(data);
+    }
+)}
 
 // Function call to initialize app
-init();
+init()
