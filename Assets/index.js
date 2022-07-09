@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generatorMarkdown = require('./utils/generateMarkdown')
+const generatorMarkdown = require('./utils/generateMarkdown') //require is a built in import function
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -38,7 +38,7 @@ const questions = [
     {
         type: 'rawlist',
         message:'Select a license from the following:',
-        choices: ['MIT License', 'Apache License', 'GPL License', 'Compliant License','N/A'],
+        choices: ['MIT License', 'Apache License', 'Boost License'],
         name: 'license',
     },
     {
