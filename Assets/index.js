@@ -1,7 +1,8 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generatorMarkdown = require('./utils/generateMarkdown') //require is a built in import function
+const generatorMarkdown = require('./utils/generateMarkdown'); //require is a built in import function
+const { platform } = require('os');
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -27,6 +28,16 @@ const questions = [
     },
     {
         type: 'input',
+        message: 'Please include a screenshot of your project.',
+        name: 'usage',
+    },
+    {
+        type: 'input',
+        message: 'Please include a video demonstrating your project.',
+        name: 'usage'
+    },
+    {
+        type: 'input',
         message: 'List your collaborators, if any, with links to their GitHub profiles.',
         name: 'contributing',
     },
@@ -36,10 +47,15 @@ const questions = [
         name: 'tests',
     },
     {
-        type: 'rawlist',
+        type: 'list',
         message:'Select a license from the following:',
-        choices: ['MIT License', 'Apache License', 'Boost License'],
+        choices: ['MIT License', 'Apache License', 'Boost License', 'N/A'],
         name: 'license',
+    },
+    {
+        type: 'input',
+        message: 'Please include a video demonstrating your project.',
+        name: 'video'
     },
     {
         type: 'input',
