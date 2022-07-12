@@ -1,8 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generatorMarkdown = require('./utils/generateMarkdown'); //require is a built in import function
-const { platform } = require('os');
+const generateMarkdown = require('./utils/generateMarkdown'); //require is a built in import function
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -28,16 +27,6 @@ const questions = [
     },
     {
         type: 'input',
-        message: 'Please include a screenshot of your project.',
-        name: 'usage',
-    },
-    {
-        type: 'input',
-        message: 'Please include a video demonstrating your project.',
-        name: 'usage'
-    },
-    {
-        type: 'input',
         message: 'List your collaborators, if any, with links to their GitHub profiles.',
         name: 'contributing',
     },
@@ -54,11 +43,6 @@ const questions = [
     },
     {
         type: 'input',
-        message: 'Please include a video demonstrating your project.',
-        name: 'video'
-    },
-    {
-        type: 'input',
         message: 'GitHub Username:',
         name: 'github',
     },
@@ -72,18 +56,17 @@ const questions = [
 // TODO: Create a function to write README file
 function writeReadme(filename, data) {
     fs.writeFileSync(filename, data)
-    console.log(filename);
-    console.log(data);
 }
 
 // TODO: Create a function to initialize app
 function init() {
-    inquirer.prompt(questions)
-    .then(function(data) {
-        writeReadme("README.md", generatorMarkdown(data));
-        console.log(data);
+    inquirer
+    .prompt(questions)
+    .then((data) => {
+        writeReadme("demoREADME.md", generateMarkdown(data));
     }
 )}
+
 
 // Function call to initialize app
 init()

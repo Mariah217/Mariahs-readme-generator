@@ -15,15 +15,13 @@ function renderLicenseBadge(license) {
   }
 }
 
-renderLicenseLink();
-
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-//see code above ^
+//see function above ^
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-//see code above ^^
+//see function above ^^
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
@@ -42,8 +40,6 @@ ${data.description}
 * [Usage](#usage)
 * [Contributing](#contributing)
 * [Tests](#tests)
-* [Project Screenshot](#screenshot)
-* [Demonstration Video](#video)
 * [Questions](#questions)
 
 ## Installation
@@ -58,6 +54,9 @@ ${data.contributing}
 ## Tests
 ${data.tests}
 
+## Badges
+
+
 ## Questions
 If you have any questions, please feel free to contact me!
 
@@ -68,5 +67,4 @@ ${data.email}
 `;
 }
 
-renderLicenseSection();
 module.exports = generateMarkdown;
